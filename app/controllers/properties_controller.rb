@@ -1,24 +1,18 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
-  # GET /properties
-  # GET /properties.json
   def index
     @properties = Property.all
   end
 
-  # GET /properties/1
-  # GET /properties/1.json
   def show
   end
 
-  # GET /properties/new
   def new
     @property = Property.new
     2.times {@property.stations.build}
   end
 
-  # GET /properties/1/edit
   def edit
     if @property.stations.last.station_name != ""
       @property.stations.create(property_id: @property.id)
@@ -28,8 +22,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # POST /properties
-  # POST /properties.json
   def create
     @property = Property.new(property_params)
     if @property.save
@@ -37,8 +29,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /properties/1
-  # PATCH/PUT /properties/1.json
   def update
     respond_to do |format|
       if @property.update(property_params)
@@ -51,8 +41,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  # DELETE /properties/1
-  # DELETE /properties/1.json
   def destroy
     @property.destroy
     respond_to do |format|
