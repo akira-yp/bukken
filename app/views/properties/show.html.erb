@@ -1,29 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Property name:</strong>
+  <strong>物件名:</strong>
   <%= @property.property_name %>
 </p>
 
 <p>
-  <strong>Rent:</strong>
+  <strong>賃料:</strong>
   <%= @property.rent %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>住所:</strong>
   <%= @property.address %>
 </p>
 
 <p>
-  <strong>Age:</strong>
+  <strong>築年数:</strong>
   <%= @property.age %>
 </p>
 
 <p>
-  <strong>Remarks:</strong>
+  <strong>備考:</strong>
   <%= @property.remarks %>
 </p>
+<hr>
+<% @property.stations.each_with_index do |station,index| %>
+<h4>最寄駅<%= index + 1 %></h4>
+<p>
+  <strong>物件名:</strong>
+  <%= station. %>
+</p>
+
+<p>
+  <strong>賃料:</strong>
+  <%= @property.rent %>
+</p>
+
+<p>
+  <strong>住所:</strong>
+  <%= @property.address %>
+</p>
+<% end %>
 
 <%= link_to 'Edit', edit_property_path(@property) %> |
 <%= link_to 'Back', properties_path %>
