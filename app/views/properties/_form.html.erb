@@ -1,4 +1,8 @@
-<h1>物件登録</h1>
+<% if action_name == "new" %>
+  <h1>物件登録</h1>
+<% else %>
+  <h1>物件編集</h1>
+<% end %>
 <%= form_with(model: @property, local:true) do |form| %>
   <% if @property.errors.any? %>
     <div id="error_explanation">
@@ -12,27 +16,27 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :property_name %>
+    <%= form.label :property_nam, "物件名" %>
     <%= form.text_field :property_name %>
   </div>
 
   <div class="field">
-    <%= form.label :rent %>
+    <%= form.label :rent, "賃料" %>
     <%= form.text_field :rent %><span>円</span>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label :address, "住所" %>
     <%= form.text_field :address %>
   </div>
 
   <div class="field">
-    <%= form.label :age %>
+    <%= form.label :age, "築年数" %>
     <%= form.text_field :age %><span>年</span>
   </div>
 
   <div class="field">
-    <%= form.label :remarks %>
+    <%= form.label :remarks, "備考" %>
     <%= form.text_area :remarks %>
   </div>
   <hr>
