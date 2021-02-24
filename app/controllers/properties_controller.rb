@@ -20,6 +20,12 @@ class PropertiesController < ApplicationController
 
   # GET /properties/1/edit
   def edit
+    if @property.stations.last.station_name != ""
+      @property.stations.create(property_id: @property.id)
+      set_property
+    else
+      set_property
+    end
   end
 
   # POST /properties
