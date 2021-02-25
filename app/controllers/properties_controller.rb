@@ -14,12 +14,8 @@ class PropertiesController < ApplicationController
   end
 
   def edit
-    if @property.stations.last.station_name != ""
-      @property.stations.create(property_id: @property.id)
-      set_property
-    else
-      set_property
-    end
+      new_station = @property.stations.new
+      @property.concat(new_station)
   end
 
   def create

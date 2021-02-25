@@ -4,5 +4,9 @@ class Property < ApplicationRecord
   validates :address, presence:true
   validates :age, presence:true
   has_many :stations,dependent: :destroy
-  accepts_nested_attributes_for :stations, allow_destroy: true
+  accepts_nested_attributes_for :stations, reject_if: :reject_blank, allow_destroy: true
+
+  def reject_blank(attributed)
+    attributed['station_name'].blank?
+  end
 end
