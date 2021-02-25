@@ -14,8 +14,7 @@ class PropertiesController < ApplicationController
   end
 
   def edit
-      new_station = @property.stations.new
-      @property.concat(new_station)
+      @property.stations.new
   end
 
   def create

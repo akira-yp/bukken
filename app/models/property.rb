@@ -7,6 +7,6 @@ class Property < ApplicationRecord
   accepts_nested_attributes_for :stations, reject_if: :reject_blank, allow_destroy: true
 
   def reject_blank(attributed)
-    attributed['station_name'].blank?
+    attributed['station_name'].blank? || attributed['line'].blank? || attributed['minutes_walk'].blank?
   end
 end
