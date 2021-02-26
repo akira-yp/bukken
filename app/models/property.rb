@@ -8,7 +8,7 @@ class Property < ApplicationRecord
 
   def reject_blank(attributed)
     if attributed[:id]
-      attributed.merge!( _destroy: 1 ) if attributed['line'].blank? && attributed['station_name'].blank? && attributed['minutes_walk'].blank?
+      attributed.merge!( _destroy: 1 ) && false if attributed['line'].blank? && attributed['station_name'].blank? && attributed['minutes_walk'].blank?
     else
       attributed['station_name'].blank? || attributed['line'].blank? || attributed['minutes_walk'].blank?
     end
