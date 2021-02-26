@@ -2,7 +2,7 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
   def index
-    @properties = Property.all
+    @properties = Property.all.order(created_at:"DESC")
   end
 
   def show
@@ -19,8 +19,14 @@ class PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
-    if @property.save
-    redirect_to properties_path, notice: "新しい物件情報を登録しました。#{number_stations}件の最寄駅が追加されました"
+    respond_to do |format|
+      if @property.save
+        format.html { redirect_to @property, notice: "新しい物件情報を登録しました。#{number_stations}件の最寄駅が追加されました" }
+        format.json { render json: @property, status: :created, location: @property }
+      else
+        format.html { render :new }
+        format.json { render json: @property.errors, status: :unprocessable_entity }
+      end
     end
   end
 
