@@ -20,7 +20,7 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     if @property.save
-    redirect_to properties_path
+    redirect_to properties_path, notice: "新しい物件情報を登録しました。#{number_stations}件の最寄駅が追加されました"
     end
   end
 
@@ -45,13 +45,16 @@ class PropertiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_property
       @property = Property.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
       params.require(:property).permit(:property_name, :rent, :address, :age, :remarks, stations_attributes: [:id, :line, :station_name, :minutes_walk, :_destroy])
+    end
+
+    def number_stations
+      @property = Property.find(@property.id)
+      @property.stations.length
     end
 end
